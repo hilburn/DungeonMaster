@@ -1,6 +1,9 @@
 package com.hilburn.dungeonmaster;
 
+import java.util.Random;
+
 import com.hilburn.dungeonmaster.blocks.ModBlocks;
+import com.hilburn.dungeonmaster.helpers.RandomHelper;
 import com.hilburn.dungeonmaster.proxies.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
@@ -13,7 +16,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = ModInformation.MODID, name = ModInformation.NAME, version = ModInformation.VERSION)
 public class DungeonMaster {
-
+	
+	public static final Random rand = new Random();
+	
 	@Instance(ModInformation.MODID)
 	public static DungeonMaster instance;
 	
@@ -25,11 +30,9 @@ public class DungeonMaster {
 	public void preInit(FMLPreInitializationEvent event){
 
 		ModBlocks.init();
-		
 
 		proxy.initSounds();
-		proxy.initRenderers();
-
+		proxy.initRenderers();	
 	}
 	
 	@EventHandler
