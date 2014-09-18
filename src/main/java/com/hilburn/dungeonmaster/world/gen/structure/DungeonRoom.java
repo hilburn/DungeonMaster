@@ -7,10 +7,10 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 public class DungeonRoom extends DungeonComponent {
 	
-	private static final int minWidth = 4;
-	private static final int maxWidth = 6;
-	private static final int minHeight = 3;
-	private static final int maxHeight = 5;
+	private static final int minWidth = 6;
+	private static final int maxWidth = 14;
+	private static final int minHeight = 4;
+	private static final int maxHeight = 6;
 
 	public DungeonRoom(StructureBoundingBox BB, int dir) {
 		super(3, BB, dir);

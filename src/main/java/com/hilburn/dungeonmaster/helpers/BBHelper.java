@@ -50,9 +50,7 @@ public class BBHelper {
     }
     
     public static StructureBoundingBox getFlatBB(StructureBoundingBox BB,int yValue){
-    	BB.minY=yValue;
-    	BB.maxY=yValue;
-    	return BB;
+    	return new StructureBoundingBox(BB.minX,yValue,BB.minZ,BB.maxX,yValue,BB.maxZ);
     }
     
 }

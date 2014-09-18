@@ -26,12 +26,12 @@ public class RandomHelper {
 	
 	/**Returns a random int between 2 values. Args int min, int max**/
 	public static int getRandomInRange(int min, int max){
-		return min+safeRandom(max-min); 
+		return min+safeRandom(max-min+1); 
 	}
 	
 	/**Returns a random integer either positive or negative**/
 	public static int safeRandom(int val){
-		if (val==0) return 0;
+		if (val==0) return 1;
 		else if (val>0) return DungeonMaster.rand.nextInt(val);
 		else return -DungeonMaster.rand.nextInt(-val);
 	}

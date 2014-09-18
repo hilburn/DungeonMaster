@@ -62,12 +62,24 @@ public class BBConnection extends StructureBoundingBox {
 		return results;
 	}
 	
+	public int getSize(){
+		return Math.max(getXSize(), getZSize());
+	}
+	
 	public BBConnection randomize(){
 		switch (direction%2){
 		case 0:
-			return new BBConnection(RandomHelper.getRandomInRange(minX, maxX),minY,minZ,maxX,minY,minZ,index,direction);
+			return new BBConnection(RandomHelper.getRandomInRange(minX+1, maxX-1),minY,minZ,maxX,minY,minZ,index,direction);
 		default:
-			return new BBConnection(minX,minY,RandomHelper.getRandomInRange(minZ, maxZ),minX,minY,maxZ,index,direction);
+			return new BBConnection(minX,minY,RandomHelper.getRandomInRange(minZ+1, maxZ-1),minX,minY,maxZ,index,direction);
+		}
+	}
+	public BBConnection randomize(int border){
+		switch (direction%2){
+		case 0:
+			return new BBConnection(RandomHelper.getRandomInRange(minX, maxX-border),minY,minZ,maxX,minY,minZ,index,direction);
+		default:
+			return new BBConnection(minX,minY,RandomHelper.getRandomInRange(minZ, maxZ-border),minX,minY,maxZ,index,direction);
 		}
 	}
 

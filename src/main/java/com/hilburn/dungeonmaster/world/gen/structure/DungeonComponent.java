@@ -87,7 +87,7 @@ public class DungeonComponent extends StructureComponent{
 	public void hollowWithBlocks(World world, Block block){
 		if (block==null)block=Blocks.stone;
 		for (int x=boundingBox.minX; x<=boundingBox.maxX;x++){
-			for (int y=boundingBox.minY; y<boundingBox.maxY;y++){
+			for (int y=boundingBox.minY; y<=boundingBox.maxY;y++){
 				for (int z=boundingBox.minZ; z<=boundingBox.maxZ;z++){
 					if (x==boundingBox.minX||x==boundingBox.maxX||y==boundingBox.minY||y==boundingBox.maxY||z==boundingBox.minZ||z==boundingBox.maxZ)world.setBlock(x,y,z,block);
 					else world.setBlock(x,y,z,Blocks.air);
@@ -96,5 +96,18 @@ public class DungeonComponent extends StructureComponent{
 		}
 	}
 	
+	public int dimInDirection(int dir){
+		switch (dir%2){
+		case 0:
+			return boundingBox.getXSize();
+		default:
+			return boundingBox.getZSize();	
+		}
+	}
+	
 	public int getDirection(){return direction;}
+
+	public void print() {
+		System.out.println(boundingBox.minX+" "+boundingBox.minY+" "+boundingBox.minZ+","+boundingBox.maxX+" "+	boundingBox.maxY+" "+boundingBox.maxZ);	
+	}
 }
