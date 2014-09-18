@@ -1,0 +1,19 @@
+package com.hilburn.dungeonmaster.proxies;
+
+
+
+
+
+public class ClientProxy extends CommonProxy {
+	
+	@Override
+	public void initSounds() {
+		
+		
+	}
+
+	@Override
+	public void initRenderers() {
+		
+	}
+}
