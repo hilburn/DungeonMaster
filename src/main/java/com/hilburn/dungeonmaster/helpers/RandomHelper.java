@@ -31,7 +31,8 @@ public class RandomHelper {
 	
 	/**Returns a random integer either positive or negative**/
 	public static int safeRandom(int val){
-		if (val>=0) return DungeonMaster.rand.nextInt(val);
+		if (val==0) return 0;
+		else if (val>0) return DungeonMaster.rand.nextInt(val);
 		else return -DungeonMaster.rand.nextInt(-val);
 	}
 	

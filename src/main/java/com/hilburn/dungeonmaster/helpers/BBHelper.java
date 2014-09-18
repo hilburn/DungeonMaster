@@ -22,7 +22,7 @@ public class BBHelper {
 
             case 1:
             	maxX = x + zShift;
-                minX = minX - length;
+                minX = maxX - length;
                 minZ = z - xShift;
                 maxZ = minZ + width;
                 break;
@@ -46,7 +46,7 @@ public class BBHelper {
     }
     
     public static StructureBoundingBox getCorrectBox(int direction, int x, int y, int z, int width, int height, int length, int xShift){
-    	return getCorrectBox(direction, x,y , z,width,height,length,xShift,0);
+    	return getCorrectBox(direction, x, y , z,width,height,length,xShift,0);
     }
     
     public static StructureBoundingBox getFlatBB(StructureBoundingBox BB,int yValue){

@@ -6,8 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import com.hilburn.dungeonmaster.helpers.BBHelper;
-import com.hilburn.dungeonmaster.world.gen.structure.DungeonComponent;
+import com.hilburn.dungeonmaster.world.gen.structure.DungeonGenerate;
 
 public class BlockDungeonGenerate extends Block{
 
@@ -19,10 +18,18 @@ public class BlockDungeonGenerate extends Block{
 	
 	@Override
 	public boolean onBlockActivated(World world, int x,int y, int z, EntityPlayer player,int side, float hitX, float hitY,float hitZ) {
-		int meta=world.getBlockMetadata(x, y, z);
-		DungeonComponent test=new DungeonComponent(1, BBHelper.getCorrectBox(meta%4, x, y+6*(meta+1), z, 2, 5, 10, 1,1),meta%4);
-		world.setBlockMetadataWithNotify(x, y, z, meta+1, 3);
-		test.hollowWithBlocks(world, null);
+		if (!world.isRemote){
+	//		int meta=world.getBlockMetadata(x, y, z);
+	//		DungeonComponent test=new DungeonComponent(1, BBHelper.getCorrectBox(meta%4, x, y+6*(meta+1), z, 2, 4, 10, 1,1),meta%4);
+	//		world.setBlockMetadataWithNotify(x, y, z, meta+1, 3);
+	//		test.hollowWithBlocks(world, null);
+	//		ArrayList<BBConnection> temp = new ArrayList<BBConnection>();
+	//		temp.addAll(test.getConnections());
+	//		for (BBConnection temps:temp){
+	//			new DungeonComponent(1,temps,temps.getDirection()).fillWithBlocks(world, Blocks.glowstone);
+	//		}
+			DungeonGenerate.generateDungeon(world,x,y+6,z);
+		}
 		return true;
 	}
 

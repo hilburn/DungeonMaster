@@ -2,6 +2,8 @@ package com.hilburn.dungeonmaster.world.gen.structure;
 
 import java.util.ArrayList;
 
+import com.hilburn.dungeonmaster.helpers.RandomHelper;
+
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 public class BBConnection extends StructureBoundingBox {
@@ -42,21 +44,31 @@ public class BBConnection extends StructureBoundingBox {
 	}
 	
 	/**Splits a BBConnection. Args: BBSplit: the value to split on, border: the border around BBSplit to also remove**/
-	private ArrayList<BBConnection> splitConnection(BBConnection BBSplit,int border) {
+	public ArrayList<BBConnection> splitConnection(StructureBoundingBox split,int border) {
 		ArrayList<BBConnection> results=new ArrayList<BBConnection>();
-		BBSplit.maxX+=border;
-		BBSplit.minX-=border;
-		BBSplit.maxY+=border;
-		BBSplit.minY-=border;
+		BBConnection splitBB=new BBConnection(split,index,direction);
+		splitBB.maxX+=border;
+		splitBB.minX-=border;
+		splitBB.maxZ+=border;
+		splitBB.minZ-=border;
 		switch (direction%2){
 		case 0:
-			if (minX<BBSplit.minX) results.add(new BBConnection(minX,minY,minZ,BBSplit.minX,minY,minZ,index,direction));
-			if (BBSplit.maxX<maxX) results.add(new BBConnection(BBSplit.maxX,minY,minZ,maxX,minY,minZ,index,direction));
+			if (minX<splitBB.minX) results.add(new BBConnection(minX,minY,minZ,splitBB.minX,minY,minZ,index,direction));
+			if (splitBB.maxX<maxX) results.add(new BBConnection(splitBB.maxX,minY,minZ,maxX,minY,minZ,index,direction));
 		case 1:
-			if (minZ<BBSplit.minZ) results.add(new BBConnection(minX,minY,minZ,minX,minY,BBSplit.minZ,index,direction));
-			if (BBSplit.maxZ<maxZ) results.add(new BBConnection(minX,minY,BBSplit.maxZ,minX,minY,BBSplit.maxZ,index,direction));
+			if (minZ<splitBB.minZ) results.add(new BBConnection(minX,minY,minZ,minX,minY,splitBB.minZ,index,direction));
+			if (splitBB.maxZ<maxZ) results.add(new BBConnection(minX,minY,splitBB.maxZ,minX,minY,splitBB.maxZ,index,direction));
 		}
 		return results;
+	}
+	
+	public BBConnection randomize(){
+		switch (direction%2){
+		case 0:
+			return new BBConnection(RandomHelper.getRandomInRange(minX, maxX),minY,minZ,maxX,minY,minZ,index,direction);
+		default:
+			return new BBConnection(minX,minY,RandomHelper.getRandomInRange(minZ, maxZ),minX,minY,maxZ,index,direction);
+		}
 	}
 
 	public int getDirection(){return direction;}
