@@ -37,18 +37,34 @@ public class DungeonStair extends DungeonComponent {
 		return result;
 	}
 	
+	@Override
+	/**Returns 1 if an Up stair, 2 if a Down Stair**/
+	public int getUpDown(){
+		if (heightChange>0)
+			return 1;
+		else
+			return 2;
+	}
 	
-//	@Override
-//	public void hollowWithBlocks(World world, Block block){
-//		block=Blocks.glowstone;
-//		for (int x=boundingBox.minX; x<=boundingBox.maxX;x++){
-//			for (int y=boundingBox.minY; y<boundingBox.maxY;y++){
-//				for (int z=boundingBox.minZ; z<=boundingBox.maxZ;z++){
-//					if (x==boundingBox.minX||x==boundingBox.maxX||y==boundingBox.minY||y==boundingBox.maxY||z==boundingBox.minZ||z==boundingBox.maxZ)world.setBlock(x,y,z,block);
-//					else world.setBlock(x,y,z,Blocks.air);
-//				}
-//			}
-//		}
-//	}
+	private int getYMult(){
+		if (getUpDown()==1) return 1;
+		return -1;
+	}
+	
+	
+	@Override
+	public void hollowWithBlocks(World world, Block block){
+		int height=boundingBox.getYSize()-getYMult()*heightChange;
+
+		if(block==null)block=Blocks.glowstone;
+		for (int x=boundingBox.minX; x<=boundingBox.maxX;x++){
+			for (int y=boundingBox.minY; y<boundingBox.maxY;y++){
+				for (int z=boundingBox.minZ; z<=boundingBox.maxZ;z++){
+					if (x==boundingBox.minX||x==boundingBox.maxX||y==boundingBox.minY||y==boundingBox.maxY||z==boundingBox.minZ||z==boundingBox.maxZ)world.setBlock(x,y,z,block);
+					else world.setBlock(x,y,z,Blocks.air);
+				}
+			}
+		}
+	}
 
 }

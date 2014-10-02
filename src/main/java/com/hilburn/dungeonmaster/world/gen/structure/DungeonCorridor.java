@@ -28,7 +28,7 @@ public class DungeonCorridor extends DungeonComponent {
 		super(1);
 		int width = RandomHelper.randomWeightedMiddle(minWidth, maxWidth+1,true);
 		int height = width+1+RandomHelper.safeRandom(1);
-		connection=connection.randomize(width);
+		connection=connection.randomize(width+1);
 		boundingBox=BBHelper.getCorrectBox(connection.getDirection(), connection.minX, connection.minY, connection.minZ, width, height , RandomHelper.getRandomInRange(minLength, maxLength), 0);
 		direction=connection.getDirection();
 	}

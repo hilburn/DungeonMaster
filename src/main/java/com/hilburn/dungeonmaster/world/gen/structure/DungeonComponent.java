@@ -105,6 +105,8 @@ public class DungeonComponent extends StructureComponent{
 		}
 	}
 	
+	public int getUpDown(){return 0;}
+	
 	public int getDirection(){return direction;}
 
 	public void print() {
