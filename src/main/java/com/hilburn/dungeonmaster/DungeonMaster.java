@@ -33,6 +33,7 @@ public class DungeonMaster {
 
 		proxy.initSounds();
 		proxy.initRenderers();	
+		
 	}
 	
 	@EventHandler

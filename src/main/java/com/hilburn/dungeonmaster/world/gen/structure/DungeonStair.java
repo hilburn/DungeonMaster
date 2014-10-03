@@ -55,10 +55,9 @@ public class DungeonStair extends DungeonComponent {
 	@Override
 	public void hollowWithBlocks(World world, Block block){
 		int height=boundingBox.getYSize()-getYMult()*heightChange;
-
-		if(block==null)block=Blocks.glowstone;
+		if(block==null)block=Blocks.stone;
 		for (int x=boundingBox.minX; x<=boundingBox.maxX;x++){
-			for (int y=boundingBox.minY; y<boundingBox.maxY;y++){
+			for (int y=boundingBox.minY; y<=boundingBox.maxY;y++){
 				for (int z=boundingBox.minZ; z<=boundingBox.maxZ;z++){
 					if (x==boundingBox.minX||x==boundingBox.maxX||y==boundingBox.minY||y==boundingBox.maxY||z==boundingBox.minZ||z==boundingBox.maxZ)world.setBlock(x,y,z,block);
 					else world.setBlock(x,y,z,Blocks.air);

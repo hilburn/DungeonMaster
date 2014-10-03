@@ -1,12 +1,16 @@
 package com.hilburn.dungeonmaster.world.gen.structure;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 
@@ -94,6 +98,28 @@ public class DungeonComponent extends StructureComponent{
 				}
 			}
 		}
+	}
+	
+	public void addToChunk(World world){
+		Block block;
+		for (int x=boundingBox.minX; x<=boundingBox.maxX;x++){
+			for (int y=boundingBox.minY; y<=boundingBox.maxY;y++){
+				for (int z=boundingBox.minZ; z<=boundingBox.maxZ;z++){
+					if (x==boundingBox.minX||x==boundingBox.maxX||y==boundingBox.minY||y==boundingBox.maxY||z==boundingBox.minZ||z==boundingBox.maxZ)block=Blocks.stone;
+					else block=Blocks.air;
+					setChunkBlock(world,x,y,z,block);
+				}
+			}
+		}
+	}
+	
+	public void setChunkBlock(World world, int x, int y, int z, Block block)
+	{
+		Chunk chunk = world.getChunkFromBlockCoords(x, z);
+		Map<Vec3,Block> blocks= new Hashtable<Vec3,Block>();
+		if (DungeonGenerate.place.containsKey(chunk)) blocks = DungeonGenerate.place.get(chunk);
+		blocks.put(Vec3.createVectorHelper(x, y, z),block);
+		DungeonGenerate.place.put(chunk,blocks);
 	}
 	
 	public int dimInDirection(int dir){

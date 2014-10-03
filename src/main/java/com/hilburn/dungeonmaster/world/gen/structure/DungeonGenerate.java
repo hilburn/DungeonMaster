@@ -2,18 +2,26 @@ package com.hilburn.dungeonmaster.world.gen.structure;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Hashtable;
+import java.util.Map;
 
+import net.minecraft.block.Block;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import net.minecraftforge.common.ForgeChunkManager.Type;
 
+import com.hilburn.dungeonmaster.DungeonMaster;
 import com.hilburn.dungeonmaster.helpers.RandomHelper;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 
 public class DungeonGenerate{
 	
-	private static int numRooms=10;
-	private static int maxRoomsPerLevel=5;
-	private static int spacing=5;
+	private static int numRooms=8000;
+	private static int maxRoomsPerLevel=1200;
+	private static int spacing=6;
 	private static int roomChance=80;
 	private static int doorChance=80;
 	private static int stairChance=10;
@@ -21,11 +29,13 @@ public class DungeonGenerate{
 	private static int[] pairOfStairs = new int[26];
 	private static ArrayList<DungeonComponent> components;
 	private static ArrayList<BBConnection> connections;
+	public static Map<Chunk,Map<Vec3,Block>> place = new Hashtable<Chunk,Map<Vec3,Block>>();
 	
 	public static void generateDungeon(World world, int x, int y, int z){
 		components=new ArrayList<DungeonComponent>();
 		connections=new ArrayList<BBConnection>();
 		//for (int i=0;i<numRoomsPerLevel.length;i++)numRoomsPerLevel[i]=0;
+		long start = System.currentTimeMillis();
 		Arrays.fill(numRoomsPerLevel,0);
 		Arrays.fill(pairOfStairs,0);
 		int dungeonRooms=1;
@@ -69,15 +79,28 @@ public class DungeonGenerate{
 					dungeonRooms++;
 					numRoomsPerLevel[thisLevel]++;
 				}
-			}
-			
+			}			
 		}
-		for (DungeonComponent component:components){
-			component.hollowWithBlocks(world, null);
-		}
-	}
-	
-	private static void addComponent(DungeonComponent newComponent,int connectionIndex, BBConnection connection){
 		
+		for (DungeonComponent component:components){
+		
+			//component.hollowWithBlocks(world, null);
+			component.addToChunk(world);
+		}
+		long end = System.currentTimeMillis();
+		System.out.println("Dungeon Calculated - Size of "+components.size()+" - in "+ (end-start) + "ms");
+		int i=1;
+		for (Chunk chunk:place.keySet())
+		{
+			Map<Vec3,Block> blocks = place.get(chunk);
+			System.out.println("Placing Chunk "+(i++)+" of "+place.size());
+			for (Vec3 loc:blocks.keySet())
+			{
+				Block block = blocks.get(loc);
+				world.setBlock((int)loc.xCoord, (int)loc.yCoord, (int)loc.zCoord, block);
+			}
+		}
+		
+		System.out.println("Dungeon Generated - in "+ (System.currentTimeMillis()-end) + "ms");
 	}
 }
