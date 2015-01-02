@@ -15,29 +15,34 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 
 public class DungeonComponent extends StructureComponent{
+	private static int MAX_ATTEMPTS = 7;
 	protected int direction;
+	protected int pattern;
+	protected int blockSet;
+	protected int feature;
+	private int connectAttempts;
 	
 	public DungeonComponent(int type){
 		componentType=type;
 		coordBaseMode=-1;
+		connectAttempts=0;
 	}
 	
 	public DungeonComponent(int type, StructureBoundingBox BB, int dir){
-		componentType=type;
-		coordBaseMode=-1;
+		this(type);
 		boundingBox=BB;
 		direction=dir;
 	}
 	
 	@Override
 	protected void func_143012_a(NBTTagCompound p_143012_1_) {
-		// TODO Auto-generated method stub
+		//Write extra data to NBT
 		
 	}
 
 	@Override
 	protected void func_143011_b(NBTTagCompound p_143011_1_) {
-		// TODO Auto-generated method stub
+		//Read extra data from NBT
 		
 	}
 
@@ -129,6 +134,11 @@ public class DungeonComponent extends StructureComponent{
 		default:
 			return boundingBox.getZSize();	
 		}
+	}
+	
+	public boolean canConnect()
+	{
+		return connectAttempts++<MAX_ATTEMPTS;
 	}
 	
 	public int getUpDown(){return 0;}
