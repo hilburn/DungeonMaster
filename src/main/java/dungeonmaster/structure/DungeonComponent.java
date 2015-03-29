@@ -1,4 +1,4 @@
-package com.hilburn.dungeonmaster.world.gen.structure;
+package dungeonmaster.structure;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

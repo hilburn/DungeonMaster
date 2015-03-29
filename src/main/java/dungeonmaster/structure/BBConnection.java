@@ -1,8 +1,8 @@
-package com.hilburn.dungeonmaster.world.gen.structure;
+package dungeonmaster.structure;
 
 import java.util.ArrayList;
 
-import com.hilburn.dungeonmaster.helpers.RandomHelper;
+import dungeonmaster.helpers.RandomHelper;
 
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 

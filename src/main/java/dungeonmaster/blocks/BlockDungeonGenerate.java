@@ -1,4 +1,4 @@
-package com.hilburn.dungeonmaster.blocks;
+package dungeonmaster.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -6,7 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import com.hilburn.dungeonmaster.world.gen.structure.DungeonGenerate;
+import dungeonmaster.structure.DungeonGenerate;
 
 public class BlockDungeonGenerate extends Block{
 

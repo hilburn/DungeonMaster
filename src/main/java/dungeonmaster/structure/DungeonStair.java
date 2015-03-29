@@ -1,4 +1,4 @@
-package com.hilburn.dungeonmaster.world.gen.structure;
+package dungeonmaster.structure;
 
 import java.util.ArrayList;
 
@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
-import com.hilburn.dungeonmaster.helpers.BBHelper;
-import com.hilburn.dungeonmaster.helpers.RandomHelper;
+import dungeonmaster.helpers.BBHelper;
+import dungeonmaster.helpers.RandomHelper;
 
 public class DungeonStair extends DungeonComponent {
 

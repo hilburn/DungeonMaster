@@ -1,6 +1,6 @@
-package com.hilburn.dungeonmaster.helpers;
+package dungeonmaster.helpers;
 
-import com.hilburn.dungeonmaster.DungeonMaster;
+import dungeonmaster.DungeonMaster;
 
 public class RandomHelper {
 	

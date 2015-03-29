@@ -1,4 +1,4 @@
-package com.hilburn.dungeonmaster.proxies;
+package dungeonmaster.proxies;
 
 public class ServerProxy extends CommonProxy{
 

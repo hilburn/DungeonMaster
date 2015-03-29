@@ -1,4 +1,4 @@
-package com.hilburn.dungeonmaster.helpers;
+package dungeonmaster.helpers;
 
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 

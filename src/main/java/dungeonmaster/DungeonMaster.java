@@ -1,10 +1,9 @@
-package com.hilburn.dungeonmaster;
+package dungeonmaster;
 
 import java.util.Random;
 
-import com.hilburn.dungeonmaster.blocks.ModBlocks;
-import com.hilburn.dungeonmaster.helpers.RandomHelper;
-import com.hilburn.dungeonmaster.proxies.CommonProxy;
+import dungeonmaster.blocks.ModBlocks;
+import dungeonmaster.proxies.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -13,16 +12,17 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import dungeonmaster.reference.Reference;
 
-@Mod(modid = ModInformation.MODID, name = ModInformation.NAME, version = ModInformation.VERSION)
+@Mod(modid = Reference.ID, name = Reference.NAME, version = Reference.VERSION_FULL)
 public class DungeonMaster {
 	
 	public static final Random rand = new Random();
 	
-	@Instance(ModInformation.MODID)
+	@Instance(Reference.ID)
 	public static DungeonMaster instance;
 	
-	@SidedProxy(clientSide="com.hilburn.dungeonmaster.proxies.ClientProxy", serverSide="com.hilburn.dungeonmaster.proxies.ServerProxy")
+	@SidedProxy(clientSide="dungeonmaster.proxies.ClientProxy", serverSide="dungeonmaster.proxies.ServerProxy")
 	public static CommonProxy proxy; 
 	
 	

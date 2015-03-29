@@ -1,9 +1,9 @@
-package com.hilburn.dungeonmaster.world.gen.structure;
+package dungeonmaster.structure;
 
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 
-import com.hilburn.dungeonmaster.helpers.BBHelper;
-import com.hilburn.dungeonmaster.helpers.RandomHelper;
+import dungeonmaster.helpers.BBHelper;
+import dungeonmaster.helpers.RandomHelper;
 
 public class DungeonCorridor extends DungeonComponent {
 

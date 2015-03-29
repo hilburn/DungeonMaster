@@ -1,4 +1,4 @@
-package com.hilburn.dungeonmaster.world.gen.structure;
+package dungeonmaster.structure;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,12 +10,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraftforge.common.ForgeChunkManager;
-import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import net.minecraftforge.common.ForgeChunkManager.Type;
 
-import com.hilburn.dungeonmaster.DungeonMaster;
-import com.hilburn.dungeonmaster.helpers.RandomHelper;
+import dungeonmaster.helpers.RandomHelper;
 
 
 public class DungeonGenerate{

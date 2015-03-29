@@ -1,4 +1,4 @@
-package com.hilburn.dungeonmaster.blocks;
+package dungeonmaster.blocks;
 
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
