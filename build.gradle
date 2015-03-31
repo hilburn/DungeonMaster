@@ -75,10 +75,7 @@ allprojects {
     version = "${config.version.minecraft}-${config.version.mod.major}.${config.version.mod.minor}.${config.version.mod.revis}"
 
     jar {
-        manifest {
-            attributes 'FMLCorePlugin': 'stevesaddons.asm.LoadingPlugin'
-            attributes 'FMLCorePluginContainsFMLMod': 'true'
-        }
+
         dependsOn ":copyBuildXml"
         destinationDir = file (rootProject.getRootDir().getPath() + '/output')
     }
