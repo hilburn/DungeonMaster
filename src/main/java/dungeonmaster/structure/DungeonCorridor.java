@@ -32,5 +32,4 @@ public class DungeonCorridor extends DungeonComponent {
 		boundingBox=BBHelper.getCorrectBox(connection.getDirection(), connection.minX, connection.minY, connection.minZ, width, height , RandomHelper.getRandomInRange(minLength, maxLength), 0);
 		direction=connection.getDirection();
 	}
-
 }
