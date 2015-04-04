@@ -1,6 +1,6 @@
 Dungeon Master
 =========
-Generates huge, intricate dungeon maze worlds
+Generates huge, intricate dungeon maze worlds with progressive difficulty increases and hostile minibosses.
 
 ## Contributors
 hilburn
